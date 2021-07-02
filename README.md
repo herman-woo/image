@@ -4,10 +4,11 @@
 - Using Prettier and eslint to format and lint code
 - using Jasmine to Run Unit and Endpoint Testing
 - Using Express to run a server
+- writing custom middleware to use fsPromises to locate local files
 
 
 ### TO DO:
 - Set up Jasmine Testing
-- - set up testing directory
+  - set up testing directory
 - Set up Sharp Image Processing
-- - set up image directory
+  - set up image directory
