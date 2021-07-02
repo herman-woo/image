@@ -1,11 +1,10 @@
 //import NPM modules
 import express from 'express';
-import sharp from 'sharp';
 //import middleware
 import search from '../../utilities/search';
+import imageProcess from '../../utilities/imageProcess';
 
 const convert = express.Router();
-
 convert.get('/', search, async (req, res) => {
   const widthdata = req.query.width as string;
   const heightdata = req.query.height as string;
@@ -21,7 +20,8 @@ convert.get('/', search, async (req, res) => {
   if (heightdata !== undefined) {
     height = parseInt(heightdata);
   }
-  await sharp(input).resize(width, height).toFile(output);
+  await imageProcess(input, width, height, output);
+  console.log('...done');
   res.send(`<img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`);
 });
 

@@ -35,53 +35,40 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var fs_1 = require("fs");
-var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var name, ext, image_1, files, result, newFiles, existNew;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                name = req.query.filename;
-                if (!name) return [3 /*break*/, 5];
-                ext = 'ext';
-                if (req.query.ext === undefined) {
-                    ext = '.jpg';
-                }
-                else {
-                    ext = "." + req.query.ext;
-                }
-                image_1 = (name + ext);
-                return [4 /*yield*/, fs_1.promises.readdir('src/imgs/full')];
-            case 1:
-                files = _a.sent();
-                result = files.find(function (file) { return file === image_1; });
-                if (!result) return [3 /*break*/, 3];
-                res.locals.image = image_1;
-                return [4 /*yield*/, fs_1.promises.readdir('src/imgs/thumbs')];
-            case 2:
-                newFiles = _a.sent();
-                existNew = newFiles.find(function (file) { return file === name + ".jpg"; });
-                if (existNew) {
-                    console.log('A Converted', existNew, 'file already exists');
-                    res.send("<img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
-                }
-                else {
-                    console.log('Coverting...');
-                    next();
-                }
-                return [3 /*break*/, 4];
-            case 3:
-                console.log('Search Result: No Image Found');
-                res.send('No Image Found');
-                _a.label = 4;
-            case 4: return [3 /*break*/, 6];
-            case 5:
-                console.log('No Image Requested');
-                res.send('Request an image');
-                _a.label = 6;
-            case 6: return [2 /*return*/];
-        }
-    });
-}); };
-exports.default = search;
+//ENDPOINT TESTING
+var supertest_1 = __importDefault(require("supertest")); //Get Super test for endpoint testing
+var index_1 = __importDefault(require("../index")); //import express server from app
+var request = supertest_1.default(index_1.default); //create supertest object
+//setup a suite for testing
+describe('Endpoint Testing for root path', function () {
+    it('gets the api root endpoint', function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, request.get('/')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    done();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('gets the conversion endpoint', function (done) { return __awaiter(void 0, void 0, void 0, function () {
+        var response;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, request.get('/convert/?filename=toronto')];
+                case 1:
+                    response = _a.sent();
+                    expect(response.status).toBe(200);
+                    done();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+});

@@ -41,38 +41,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //import NPM modules
 var express_1 = __importDefault(require("express"));
-var sharp_1 = __importDefault(require("sharp"));
 //import middleware
 var search_1 = __importDefault(require("../../utilities/search"));
+var imageProcess_1 = __importDefault(require("../../utilities/imageProcess"));
 var convert = express_1.default.Router();
 convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var data, input, outputPath, newFile, output, width, height;
+    var widthdata, heightdata, input, outputPath, newFile, output, width, height;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                data = {
-                    file: req.query.filename,
-                    height: req.query.height,
-                    width: req.query.width,
-                    image: res.locals.image
-                };
-                input = "src/imgs/full/" + data.image;
-                outputPath = "src/imgs/thumbs/";
-                newFile = data.file + ".jpg";
+                widthdata = req.query.width;
+                heightdata = req.query.height;
+                input = "src/imgs/full/" + res.locals.image;
+                outputPath = 'src/imgs/thumbs/';
+                newFile = req.query.filename + ".jpg";
                 output = outputPath + newFile;
                 width = 200;
                 height = 200;
-                if (data.width !== undefined) {
-                    width === data.width;
+                if (widthdata !== undefined) {
+                    width = parseInt(widthdata);
                 }
-                if (data.height !== undefined) {
-                    height === data.height;
+                if (heightdata !== undefined) {
+                    height = parseInt(heightdata);
                 }
-                return [4 /*yield*/, sharp_1.default(input)
-                        .resize(width, height)
-                        .toFile(output)];
+                return [4 /*yield*/, imageProcess_1.default(input, width, height, output)];
             case 1:
                 _a.sent();
+                console.log('...done');
                 res.send("<img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>");
                 return [2 /*return*/];
         }

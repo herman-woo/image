@@ -17,3 +17,4 @@ app.use('/', index_1.default); //Root Route
 app.listen(port, function () {
     console.log("Image Processing App - Server Listening @ port:" + port);
 });
+exports.default = app; //export app to allow for endpoint testing
