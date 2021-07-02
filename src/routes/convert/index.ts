@@ -22,7 +22,9 @@ convert.get('/', search, async (req, res) => {
   }
   await imageProcess(input, width, height, output);
   console.log('...done');
-  res.send(`<img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`);
+  res.send(
+    `<h2>converted - ${width}x${height}</h2><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`
+  );
 });
 
 export default convert;

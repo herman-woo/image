@@ -25,7 +25,7 @@ const search = async (
       if (existNew) {
         console.log('A Converted', existNew, 'file already exists');
         res.send(
-          `<img src="http://localhost:3000/imgs/thumbs/${name}.jpg"></img>`
+          `<div>Converted File Exists</div><img src="http://localhost:3000/imgs/thumbs/${name}.jpg"></img>`
         );
       } else {
         console.log('Coverting...');
@@ -33,11 +33,10 @@ const search = async (
       }
     } else {
       console.log('Search Result: No Image Found');
-      res.send('No Image Found');
+      res.send('Error: No Image Found');
     }
   } else {
-    console.log('No Image Requested');
-    res.send('Request an image');
+    res.send('Error: No filename requested');
   }
 };
 

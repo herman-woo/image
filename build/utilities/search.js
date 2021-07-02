@@ -64,7 +64,7 @@ var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 existNew = newFiles.find(function (file) { return file === name + ".jpg"; });
                 if (existNew) {
                     console.log('A Converted', existNew, 'file already exists');
-                    res.send("<img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
+                    res.send("<div>Converted File Exists</div><img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
                 }
                 else {
                     console.log('Coverting...');
@@ -73,12 +73,11 @@ var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 return [3 /*break*/, 4];
             case 3:
                 console.log('Search Result: No Image Found');
-                res.send('No Image Found');
+                res.send('Error: No Image Found');
                 _a.label = 4;
             case 4: return [3 /*break*/, 6];
             case 5:
-                console.log('No Image Requested');
-                res.send('Request an image');
+                res.send('Error: No filename requested');
                 _a.label = 6;
             case 6: return [2 /*return*/];
         }

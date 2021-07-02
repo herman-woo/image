@@ -68,7 +68,7 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
             case 1:
                 _a.sent();
                 console.log('...done');
-                res.send("<img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>");
+                res.send("<h2>converted - " + width + "x" + height + "</h2><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>");
                 return [2 /*return*/];
         }
     });
