@@ -52,7 +52,7 @@ var imageProcess = function (input, w, h, outputDir, outputFile) { return __awai
                 thumbs = _a.sent();
                 findOutputFile = thumbs.find(function (file) { return file === outputFile; });
                 if (!findOutputFile) return [3 /*break*/, 2];
-                return [2 /*return*/, "File already exists"];
+                return [2 /*return*/, 'File already exists'];
             case 2:
                 _a.trys.push([2, 4, , 5]);
                 return [4 /*yield*/, sharp_1.default(input) //takes the target file path
@@ -60,16 +60,16 @@ var imageProcess = function (input, w, h, outputDir, outputFile) { return __awai
                         .toFile("" + outputDir + outputFile)];
             case 3:
                 _a.sent(); //places it to the designated path
-                return [2 /*return*/, "Image Processed"];
+                return [2 /*return*/, 'Image Processed'];
             case 4:
                 error_1 = _a.sent();
                 console.log('Sharp Could not process image', error_1);
-                return [2 /*return*/, "Unable to Process Input"];
+                return [2 /*return*/, 'Unable to Process Input'];
             case 5: return [3 /*break*/, 7];
             case 6:
                 error_2 = _a.sent();
-                console.log("No output directory found", error_2);
-                return [2 /*return*/, "No output directory found"];
+                console.log('No output directory found', error_2);
+                return [2 /*return*/, 'No output directory found'];
             case 7: return [2 /*return*/];
         }
     });

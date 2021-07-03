@@ -51,7 +51,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
                 case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/home.jpg', 200, 200, 'src/imgs/thumbs/', 'home.jpg')];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual("Image Processed");
+                    expect(result).toEqual('Image Processed');
                     return [2 /*return*/];
             }
         });
@@ -63,7 +63,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
                 case 0: return [4 /*yield*/, imageProcess_1.default('invalid.path', 200, 200, 'src/imgs/thumbs/', 'fjord.jpg')];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual("Unable to Process Input");
+                    expect(result).toEqual('Unable to Process Input');
                     return [2 /*return*/];
             }
         });
@@ -75,7 +75,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
                 case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'invalid.path', 'home.jpg')];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual("No output directory found");
+                    expect(result).toEqual('No output directory found');
                     return [2 /*return*/];
             }
         });
@@ -87,7 +87,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
                 case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'src/imgs/thumbs/', 'toronto.jpg')];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual("File already exists");
+                    expect(result).toEqual('File already exists');
                     return [2 /*return*/];
             }
         });

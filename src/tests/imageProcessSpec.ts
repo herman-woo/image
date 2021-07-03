@@ -13,7 +13,7 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'src/imgs/thumbs/',
       'home.jpg'
     );
-    expect(result).toEqual("Image Processed");
+    expect(result).toEqual('Image Processed');
   });
   it('Invalid Input Path throws error', async () => {
     const result = await imageProcess(
@@ -23,7 +23,7 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'src/imgs/thumbs/',
       'fjord.jpg'
     );
-    expect(result).toEqual("Unable to Process Input");
+    expect(result).toEqual('Unable to Process Input');
   });
   it('Invalid Output Path throws error', async () => {
     const result = await imageProcess(
@@ -33,7 +33,7 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'invalid.path',
       'home.jpg'
     );
-    expect(result).toEqual("No output directory found");
+    expect(result).toEqual('No output directory found');
   });
   it('Output File exists', async () => {
     const result = await imageProcess(
@@ -43,6 +43,6 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'src/imgs/thumbs/',
       'toronto.jpg'
     );
-    expect(result).toEqual("File already exists");
+    expect(result).toEqual('File already exists');
   });
 });
