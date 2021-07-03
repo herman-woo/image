@@ -10,7 +10,8 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'src/imgs/full/toronto.jpg',
       200,
       200,
-      'src/imgs/thumbs/toronto.jpg'
+      'src/imgs/thumbs/',
+      'toronto.jpg'
     );
     expect(result).toEqual("Image Processed");
   });
@@ -19,8 +20,19 @@ describe('Functionality Testing for Sharp Middleware', () => {
       'invalid.path',
       200,
       200,
-      'src/imgs/thumbs/toronto.jpg'
+      'src/imgs/thumbs/',
+      'toronto.jpg'
     );
-    expect(result).toEqual("Unable to Process Image");
+    expect(result).toEqual("Unable to Process Input");
+  });
+  it('Invalid Output Path throws error', async () => {
+    const result = await imageProcess(
+      'src/imgs/full/toronto.jpg',
+      200,
+      200,
+      'invalid.path',
+      'toronto.jpg'
+    );
+    expect(result).toEqual("No output directory found");
   });
 });

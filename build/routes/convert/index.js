@@ -48,7 +48,7 @@ var imageProcess_1 = __importDefault(require("../../utilities/imageProcess"));
 var checkKey_1 = __importDefault(require("../../utilities/checkKey"));
 var convert = express_1.default.Router();
 convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var widthData, heightData, input, newFile, output, result, updateResult, getSize, width, height, error_1;
+    var widthData, heightData, input, newFile, outputDir, result, updateResult, getSize, width, height, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -56,7 +56,7 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
                 heightData = req.query.height;
                 input = "src/imgs/full/" + res.locals.image;
                 newFile = req.query.filename + ".jpg";
-                output = 'src/imgs/thumbs/' + newFile;
+                outputDir = 'src/imgs/thumbs/';
                 result = '';
                 updateResult = function (update) {
                     result += update;
@@ -75,7 +75,7 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, imageProcess_1.default(input, width, height, output)];
+                return [4 /*yield*/, imageProcess_1.default(input, width, height, outputDir, newFile)];
             case 2:
                 _a.sent();
                 console.log("...done: @http://localhost:3000/imgs/thumbs/" + newFile);

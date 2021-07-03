@@ -48,7 +48,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'src/imgs/thumbs/toronto.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'src/imgs/thumbs/', 'toronto.jpg')];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual("Image Processed");
@@ -60,10 +60,22 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('invalid.path', 200, 200, 'src/imgs/thumbs/toronto.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('invalid.path', 200, 200, 'src/imgs/thumbs/', 'toronto.jpg')];
                 case 1:
                     result = _a.sent();
-                    expect(result).toEqual("Unable to Process Image");
+                    expect(result).toEqual("Unable to Process Input");
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+    it('Invalid Output Path throws error', function () { return __awaiter(void 0, void 0, void 0, function () {
+        var result;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'invalid.path', 'toronto.jpg')];
+                case 1:
+                    result = _a.sent();
+                    expect(result).toEqual("No output directory found");
                     return [2 /*return*/];
             }
         });

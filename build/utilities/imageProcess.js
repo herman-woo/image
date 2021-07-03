@@ -40,23 +40,35 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sharp_1 = __importDefault(require("sharp"));
-var imageProcess = function (input, w, h, output) { return __awaiter(void 0, void 0, void 0, function () {
-    var error_1;
+var fs_1 = require("fs");
+var imageProcess = function (input, w, h, outputDir, outputFile) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_1, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                _a.trys.push([0, 6, , 7]);
+                return [4 /*yield*/, fs_1.promises.readdir(outputDir)];
+            case 1:
+                _a.sent();
+                _a.label = 2;
+            case 2:
+                _a.trys.push([2, 4, , 5]);
                 return [4 /*yield*/, sharp_1.default(input) //takes the target file path
                         .resize(w, h) //takes the intended width and height
-                        .toFile(output)];
-            case 1:
+                        .toFile("" + outputDir + outputFile)];
+            case 3:
                 _a.sent(); //places it to the designated path
                 return [2 /*return*/, "Image Processed"];
-            case 2:
+            case 4:
                 error_1 = _a.sent();
                 console.log('Sharp Could not process image', error_1);
-                return [2 /*return*/, "Unable to Process Image"];
-            case 3: return [2 /*return*/];
+                return [2 /*return*/, "Unable to Process Input"];
+            case 5: return [3 /*break*/, 7];
+            case 6:
+                error_2 = _a.sent();
+                console.log("No output directory found", error_2);
+                return [2 /*return*/, "No output directory found"];
+            case 7: return [2 /*return*/];
         }
     });
 }); };

@@ -16,7 +16,7 @@ convert.get(
     const heightData = req.query.height as unknown as string;
     const input = `src/imgs/full/${res.locals.image}`;
     const newFile = `${req.query.filename}.jpg`;
-    const output = 'src/imgs/thumbs/' + newFile;
+    const outputDir = 'src/imgs/thumbs/';
     let result = '';
     const updateResult = (update: string): void => {
       result += update;
@@ -37,7 +37,7 @@ convert.get(
     const width = getSize(checkKey(widthData, 'width'), 200);
     const height = getSize(checkKey(heightData, 'height'), 200);
     try {
-      await imageProcess(input, width, height, output);
+      await imageProcess(input, width, height, outputDir, newFile);
       console.log(`...done: @http://localhost:3000/imgs/thumbs/${newFile}`);
       result += `<h2>converted - ${width}x${height}</h2><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
       res.send(result);
