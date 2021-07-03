@@ -44,32 +44,50 @@ var express_1 = __importDefault(require("express"));
 //import middleware
 var search_1 = __importDefault(require("../../utilities/search"));
 var imageProcess_1 = __importDefault(require("../../utilities/imageProcess"));
+//import function
+var checkKey_1 = __importDefault(require("../../utilities/checkKey"));
 var convert = express_1.default.Router();
 convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var widthdata, heightdata, input, outputPath, newFile, output, width, height;
+    var widthData, heightData, input, newFile, output, result, updateResult, getSize, width, height, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                widthdata = req.query.width;
-                heightdata = req.query.height;
+                widthData = req.query.width;
+                heightData = req.query.height;
                 input = "src/imgs/full/" + res.locals.image;
-                outputPath = 'src/imgs/thumbs/';
                 newFile = req.query.filename + ".jpg";
-                output = outputPath + newFile;
-                width = 200;
-                height = 200;
-                if (widthdata !== undefined) {
-                    width = parseInt(widthdata);
-                }
-                if (heightdata !== undefined) {
-                    height = parseInt(heightdata);
-                }
-                return [4 /*yield*/, imageProcess_1.default(input, width, height, output)];
+                output = 'src/imgs/thumbs/' + newFile;
+                result = '';
+                updateResult = function (update) {
+                    result += update;
+                };
+                getSize = function (checkedKey, defaultSize) {
+                    if (typeof checkedKey === 'number') {
+                        return checkedKey;
+                    }
+                    else {
+                        updateResult(checkedKey);
+                        return defaultSize;
+                    }
+                };
+                width = getSize(checkKey_1.default(widthData, 'width'), 200);
+                height = getSize(checkKey_1.default(heightData, 'height'), 200);
+                _a.label = 1;
             case 1:
+                _a.trys.push([1, 3, , 4]);
+                return [4 /*yield*/, imageProcess_1.default(input, width, height, output)];
+            case 2:
                 _a.sent();
-                console.log('...done');
-                res.send("<h2>converted - " + width + "x" + height + "</h2><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>");
-                return [2 /*return*/];
+                console.log("...done: @http://localhost:3000/imgs/thumbs/" + newFile);
+                result += "<h2>converted - " + width + "x" + height + "</h2><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
+                res.send(result);
+                return [3 /*break*/, 4];
+            case 3:
+                error_1 = _a.sent();
+                console.log('Invalid argument', error_1);
+                res.send('Failed to Process Image');
+                return [3 /*break*/, 4];
+            case 4: return [2 /*return*/];
         }
     });
 }); });

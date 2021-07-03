@@ -41,14 +41,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var sharp_1 = __importDefault(require("sharp"));
 var imageProcess = function (input, w, h, output) { return __awaiter(void 0, void 0, void 0, function () {
+    var error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, sharp_1.default(input) //takes the target file path
-                    .resize(w, h) //takes the intended width and height
-                    .toFile(output)];
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, sharp_1.default(input) //takes the target file path
+                        .resize(w, h) //takes the intended width and height
+                        .toFile(output)];
             case 1:
                 _a.sent(); //places it to the designated path
-                return [2 /*return*/];
+                return [3 /*break*/, 3];
+            case 2:
+                error_1 = _a.sent();
+                console.log('Sharp Could not process image');
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
         }
     });
 }); };

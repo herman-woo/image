@@ -38,48 +38,85 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var name, ext, image_1, files, result, newFiles, existNew;
+    var name, ext, image_1, files, result, thumbs, convertExists, error_1, error_2, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 name = req.query.filename;
-                if (!name) return [3 /*break*/, 5];
+                if (!name) return [3 /*break*/, 16];
                 ext = 'ext';
                 if (req.query.ext === undefined) {
-                    ext = '.jpg';
+                    //if no ext was defined
+                    ext = '.jpg'; //set jpg as default extention
                 }
                 else {
-                    ext = "." + req.query.ext;
+                    ext = "." + req.query.ext; //if ext key was used, set the extention to the key
                 }
                 image_1 = (name + ext);
-                return [4 /*yield*/, fs_1.promises.readdir('src/imgs/full')];
+                _a.label = 1;
             case 1:
+                _a.trys.push([1, 14, , 15]);
+                return [4 /*yield*/, fs_1.promises.readdir('src/imgs/full')];
+            case 2:
                 files = _a.sent();
                 result = files.find(function (file) { return file === image_1; });
-                if (!result) return [3 /*break*/, 3];
-                res.locals.image = image_1;
+                if (!result) return [3 /*break*/, 12];
+                // if image exists
+                res.locals.image = image_1; //set a value to be passed on in response.locals
+                _a.label = 3;
+            case 3:
+                _a.trys.push([3, 5, , 11]);
                 return [4 /*yield*/, fs_1.promises.readdir('src/imgs/thumbs')];
-            case 2:
-                newFiles = _a.sent();
-                existNew = newFiles.find(function (file) { return file === name + ".jpg"; });
-                if (existNew) {
-                    console.log('A Converted', existNew, 'file already exists');
-                    res.send("<div>Converted File Exists</div><img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
+            case 4:
+                thumbs = _a.sent();
+                convertExists = thumbs.find(function (thumb) { return thumb === name + ".jpg"; });
+                if (convertExists) {
+                    //if the file exists in the folder exists:
+                    console.log("A Converted " + name + ".jpg file already exists");
+                    res.send(
+                    //serve the existing file
+                    "<div>Converted " + image_1 + " file exists</div><img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
                 }
                 else {
-                    console.log('Coverting...');
-                    next();
+                    console.log("Coverting " + image_1 + "...");
+                    next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
                 }
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 11];
+            case 5:
+                error_1 = _a.sent();
+                _a.label = 6;
+            case 6:
+                _a.trys.push([6, 9, , 10]);
+                return [4 /*yield*/, fs_1.promises.mkdir('src/imgs/thumbs')];
+            case 7:
+                _a.sent(); //create the folder
+                return [4 /*yield*/, fs_1.promises.readdir('src/imgs/thumbs')];
+            case 8:
+                _a.sent();
+                console.log('Created new Thumbs folder,', "Coverting " + image_1 + "...");
+                next(); //since there was no thumbs folder, that means no thumbs existsed prior, clearing it up to be converted.
+                return [3 /*break*/, 10];
+            case 9:
+                error_2 = _a.sent();
+                console.log('Could not Create new thumbs folder');
+                res.send('No Output Directory');
+                return [3 /*break*/, 10];
+            case 10: return [3 /*break*/, 11];
+            case 11: return [3 /*break*/, 13];
+            case 12:
                 console.log('Search Result: No Image Found');
                 res.send('Error: No Image Found');
-                _a.label = 4;
-            case 4: return [3 /*break*/, 6];
-            case 5:
+                _a.label = 13;
+            case 13: return [3 /*break*/, 15];
+            case 14:
+                error_3 = _a.sent();
+                res.send('Failed to get images');
+                return [3 /*break*/, 15];
+            case 15: return [3 /*break*/, 17];
+            case 16:
                 res.send('Error: No filename requested');
-                _a.label = 6;
-            case 6: return [2 /*return*/];
+                _a.label = 17;
+            case 17: return [2 /*return*/];
         }
     });
 }); };

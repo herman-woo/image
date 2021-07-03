@@ -6,7 +6,7 @@ import convert from '../convert/index';
 
 root.use('/convert', convert);
 
-root.get('/', (req, res) => {
+root.get('/', (req: express.Request, res: express.Response): void => {
   res.setHeader('Content-Type', 'text/html');
   res.send(`<h1>Image Processing API</h1>
     <h2>Available Files:</h2>
