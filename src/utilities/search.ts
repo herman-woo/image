@@ -26,12 +26,13 @@ const search = async (
         res.locals.image = image; //set a value to be passed on in response.locals
         //check to see if thumbs directory exists
         try {
-          const thumbs = await fs.readdir('src/imgs/thumbs'); //check thumbs folder to see if image exists
-          const convertExists = thumbs.find((thumb) => thumb === `${name}.jpg`);
-          if (convertExists) {
+          //const thumbs =
+          await fs.readdir('src/imgs/thumbs'); //check thumbs folder to see if image exists
+          //const convertExists = thumbs.find((thumb) => thumb === `${name}.jpg`);
+          /*if (convertExists) {
             //if the file exists in the folder exists:
             console.log(`A Converted ${name}.jpg file already exists`);
-            res.send(
+              res.send(
               //serve the existing file
               `<div>Converted ${image} file exists</div><img src="http://localhost:3000/imgs/thumbs/${name}.jpg"></img>`
             );
@@ -39,6 +40,9 @@ const search = async (
             console.log(`Coverting ${image}...`);
             next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
           }
+          */
+          console.log(`Coverting ${image}...`);
+          next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
         } catch (error) {
           //if thumbs folder does not exist:
           try {

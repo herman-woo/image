@@ -38,7 +38,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var fs_1 = require("fs");
 var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0, function () {
-    var name, ext, image_1, files, result, thumbs, convertExists, error_1, error_2, error_3;
+    var name, ext, image_1, files, result, error_1, error_2, error_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
@@ -66,21 +66,26 @@ var search = function (req, res, next) { return __awaiter(void 0, void 0, void 0
                 _a.label = 3;
             case 3:
                 _a.trys.push([3, 5, , 11]);
+                //const thumbs =
                 return [4 /*yield*/, fs_1.promises.readdir('src/imgs/thumbs')];
             case 4:
-                thumbs = _a.sent();
-                convertExists = thumbs.find(function (thumb) { return thumb === name + ".jpg"; });
-                if (convertExists) {
-                    //if the file exists in the folder exists:
-                    console.log("A Converted " + name + ".jpg file already exists");
+                //const thumbs =
+                _a.sent(); //check thumbs folder to see if image exists
+                //const convertExists = thumbs.find((thumb) => thumb === `${name}.jpg`);
+                /*if (convertExists) {
+                  //if the file exists in the folder exists:
+                  console.log(`A Converted ${name}.jpg file already exists`);
                     res.send(
                     //serve the existing file
-                    "<div>Converted " + image_1 + " file exists</div><img src=\"http://localhost:3000/imgs/thumbs/" + name + ".jpg\"></img>");
+                    `<div>Converted ${image} file exists</div><img src="http://localhost:3000/imgs/thumbs/${name}.jpg"></img>`
+                  );
+                } else {
+                  console.log(`Coverting ${image}...`);
+                  next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
                 }
-                else {
-                    console.log("Coverting " + image_1 + "...");
-                    next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
-                }
+                */
+                console.log("Coverting " + image_1 + "...");
+                next(); //If thumbs file exists && current image name cannot be found in the folder, run convert script
                 return [3 /*break*/, 11];
             case 5:
                 error_1 = _a.sent();

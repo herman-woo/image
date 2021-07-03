@@ -42,17 +42,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var sharp_1 = __importDefault(require("sharp"));
 var fs_1 = require("fs");
 var imageProcess = function (input, w, h, outputDir, outputFile) { return __awaiter(void 0, void 0, void 0, function () {
-    var thumbs, findOutputFile, error_1, error_2;
+    var error_1, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 6, , 7]);
+                //const thumbs =
                 return [4 /*yield*/, fs_1.promises.readdir(outputDir)];
             case 1:
-                thumbs = _a.sent();
-                findOutputFile = thumbs.find(function (file) { return file === outputFile; });
-                if (!findOutputFile) return [3 /*break*/, 2];
-                return [2 /*return*/, 'File already exists'];
+                //const thumbs =
+                _a.sent();
+                _a.label = 2;
             case 2:
                 _a.trys.push([2, 4, , 5]);
                 return [4 /*yield*/, sharp_1.default(input) //takes the target file path

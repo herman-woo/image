@@ -80,16 +80,16 @@ describe('Functionality Testing for Sharp Middleware', function () {
             }
         });
     }); });
-    it('Output File exists', function () { return __awaiter(void 0, void 0, void 0, function () {
-        var result;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('src/tests/imgsSpec/fullSpec/test1.jpg', 200, 200, 'src/tests/imgsSpec/thumbsSpec/', 'test1.jpg')];
-                case 1:
-                    result = _a.sent();
-                    expect(result).toEqual('File already exists');
-                    return [2 /*return*/];
-            }
-        });
-    }); });
+    /*
+    it('Output File exists', async () => {
+      const result = await imageProcess(
+        'src/tests/imgsSpec/fullSpec/test1.jpg',
+        200,
+        200,
+        'src/tests/imgsSpec/thumbsSpec/',
+        'test1.jpg'
+      );
+      expect(result).toEqual('File already exists');
+    });
+    */
 });

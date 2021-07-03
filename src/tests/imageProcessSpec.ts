@@ -35,6 +35,7 @@ describe('Functionality Testing for Sharp Middleware', () => {
     );
     expect(result).toEqual('No output directory found');
   });
+  /*
   it('Output File exists', async () => {
     const result = await imageProcess(
       'src/tests/imgsSpec/fullSpec/test1.jpg',
@@ -45,4 +46,5 @@ describe('Functionality Testing for Sharp Middleware', () => {
     );
     expect(result).toEqual('File already exists');
   });
+  */
 });
