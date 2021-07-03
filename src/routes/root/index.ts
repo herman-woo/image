@@ -28,9 +28,9 @@ root.get('/', (req: express.Request, res: express.Response): void => {
       <li>(optional)width - desired width dimention to convert to, default value is 200</li>
       <li>(optional)height - desired height dimention to convert to, default value is 200</li>
     </ul>
-    <h3>Example 1: <a href="/convert/?filename=toronto&width=500&height=500">/convert/?filename=toronto&width=200&height=200</a></h3>
-    <h3>Example 2: <a href="/convert/?filename=egypt&ext=jpeg">/convert/?filename=egypt&ext=jpeg</a></h3>
-    <h3>Example 2: <a href="/convert/?filename=">/convert/?filename=</a></h3>
+    <h3>Example 1: <a href="/convert/?filename=toronto&width=200&height=200">/convert/?filename=toronto&width=200&height=200</a>(Success)</h3>
+    <h3>Example 2: <a href="/convert/?filename=egypt&ext=jpeg">/convert/?filename=egypt&ext=jpeg</a>(Success)</h3>
+    <h3>Example 3: <a href="/convert/?filename=">/convert/?filename=</a>(No Image Found)</h3>
   `);
 });
 

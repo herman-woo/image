@@ -1,5 +1,6 @@
 //import NPM modules
 import express from 'express';
+import { promises as fs } from 'fs';
 //import middleware
 import search from '../../utilities/search';
 import imageProcess from '../../utilities/imageProcess';
@@ -14,8 +15,7 @@ convert.get(
   async (req: express.Request, res: express.Response): Promise<void> => {
     const widthData = req.query.width as unknown as string; //Use type assertion on default value from key
     const heightData = req.query.height as unknown as string;
-    const input = `src/imgs/full/${res.locals.image}`;
-    const newFile = `${req.query.filename}.jpg`;
+    const input = `src/imgs/full/${res.locals.fullImage}`;
     const outputDir = 'src/imgs/thumbs/';
     let result = '';
     const updateResult = (update: string): void => {
@@ -36,14 +36,28 @@ convert.get(
 
     const width = getSize(checkKey(widthData, 'width'), 200);
     const height = getSize(checkKey(heightData, 'height'), 200);
+    const newFile = `${req.query.filename}${width}x${height}.jpg`;
     try {
-      await imageProcess(input, width, height, outputDir, newFile);
-      console.log(`...done: @http://localhost:3000/imgs/thumbs/${newFile}`);
-      result += `<h2>converted - ${width}x${height}</h2><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
-      res.send(result);
+      const thumbs = await fs.readdir(outputDir);
+      const cache = thumbs.find((thumb) => thumb === newFile);
+      if (cache) {
+        console.log('Existing File found:', cache, '. Serving cached photo');
+        result += `<h3>cached - ${width}x${height}</h3><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
+        res.send(result);
+      } else {
+        console.log('No thumb found, converting new photo');
+        try {
+          await imageProcess(input, width, height, outputDir, newFile);
+          console.log(`...done: @http://localhost:3000/imgs/thumbs/${newFile}`);
+          result += `<h3>converted - ${width}x${height}</h3><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
+          res.send(result);
+        } catch (error) {
+          console.log('Invalid argument', error);
+          res.send('Failed to Process Image');
+        }
+      }
     } catch (error) {
-      console.log('Invalid argument', error);
-      res.send('Failed to Process Image');
+      console.log('no thumbs directory');
     }
   }
 );

@@ -41,6 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 //import NPM modules
 var express_1 = __importDefault(require("express"));
+var fs_1 = require("fs");
 //import middleware
 var search_1 = __importDefault(require("../../utilities/search"));
 var imageProcess_1 = __importDefault(require("../../utilities/imageProcess"));
@@ -48,14 +49,13 @@ var imageProcess_1 = __importDefault(require("../../utilities/imageProcess"));
 var checkKey_1 = __importDefault(require("../../utilities/checkKey"));
 var convert = express_1.default.Router();
 convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var widthData, heightData, input, newFile, outputDir, result, updateResult, getSize, width, height, error_1;
+    var widthData, heightData, input, outputDir, result, updateResult, getSize, width, height, newFile, thumbs, cache, error_1, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 widthData = req.query.width;
                 heightData = req.query.height;
-                input = "src/imgs/full/" + res.locals.image;
-                newFile = req.query.filename + ".jpg";
+                input = "src/imgs/full/" + res.locals.fullImage;
                 outputDir = 'src/imgs/thumbs/';
                 result = '';
                 updateResult = function (update) {
@@ -72,22 +72,42 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
                 };
                 width = getSize(checkKey_1.default(widthData, 'width'), 200);
                 height = getSize(checkKey_1.default(heightData, 'height'), 200);
+                newFile = "" + req.query.filename + width + "x" + height + ".jpg";
                 _a.label = 1;
             case 1:
-                _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, imageProcess_1.default(input, width, height, outputDir, newFile)];
+                _a.trys.push([1, 8, , 9]);
+                return [4 /*yield*/, fs_1.promises.readdir(outputDir)];
             case 2:
+                thumbs = _a.sent();
+                cache = thumbs.find(function (thumb) { return thumb === newFile; });
+                if (!cache) return [3 /*break*/, 3];
+                console.log('Existing File found:', cache, '. Serving cached photo');
+                result += "<h3>cached - " + width + "x" + height + "</h3><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
+                res.send(result);
+                return [3 /*break*/, 7];
+            case 3:
+                console.log('No thumb found, converting new photo');
+                _a.label = 4;
+            case 4:
+                _a.trys.push([4, 6, , 7]);
+                return [4 /*yield*/, imageProcess_1.default(input, width, height, outputDir, newFile)];
+            case 5:
                 _a.sent();
                 console.log("...done: @http://localhost:3000/imgs/thumbs/" + newFile);
-                result += "<h2>converted - " + width + "x" + height + "</h2><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
+                result += "<h3>converted - " + width + "x" + height + "</h3><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
                 res.send(result);
-                return [3 /*break*/, 4];
-            case 3:
+                return [3 /*break*/, 7];
+            case 6:
                 error_1 = _a.sent();
                 console.log('Invalid argument', error_1);
                 res.send('Failed to Process Image');
-                return [3 /*break*/, 4];
-            case 4: return [2 /*return*/];
+                return [3 /*break*/, 7];
+            case 7: return [3 /*break*/, 9];
+            case 8:
+                error_2 = _a.sent();
+                console.log('no thumbs directory');
+                return [3 /*break*/, 9];
+            case 9: return [2 /*return*/];
         }
     });
 }); });
