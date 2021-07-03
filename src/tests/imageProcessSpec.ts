@@ -7,11 +7,11 @@ import imageProcess from '../utilities/imageProcess';
 describe('Functionality Testing for Sharp Middleware', () => {
   it('Successfully Converts an image', async () => {
     const result = await imageProcess(
-      'src/imgs/full/toronto.jpg',
+      'src/imgs/full/home.jpg',
       200,
       200,
       'src/imgs/thumbs/',
-      'toronto.jpg'
+      'home.jpg'
     );
     expect(result).toEqual("Image Processed");
   });
@@ -21,7 +21,7 @@ describe('Functionality Testing for Sharp Middleware', () => {
       200,
       200,
       'src/imgs/thumbs/',
-      'toronto.jpg'
+      'fjord.jpg'
     );
     expect(result).toEqual("Unable to Process Input");
   });
@@ -31,8 +31,18 @@ describe('Functionality Testing for Sharp Middleware', () => {
       200,
       200,
       'invalid.path',
-      'toronto.jpg'
+      'home.jpg'
     );
     expect(result).toEqual("No output directory found");
+  });
+  it('Output File exists', async () => {
+    const result = await imageProcess(
+      'src/imgs/full/toronto.jpg',
+      200,
+      200,
+      'src/imgs/thumbs/',
+      'toronto.jpg'
+    );
+    expect(result).toEqual("File already exists");
   });
 });
