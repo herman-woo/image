@@ -48,7 +48,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/home.jpg', 200, 200, 'src/imgs/thumbs/', 'home.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('src/tests/imgsSpec/fullSpec/test1.jpg', 200, 200, 'src/tests/imgsSpec/thumbsSpec/', 'test1.jpg')];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual('Image Processed');
@@ -60,7 +60,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('invalid.path', 200, 200, 'src/imgs/thumbs/', 'fjord.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('invalid.path', 200, 200, 'src/tests/imgsSpec/thumbsSpec/', 'test2.jpg')];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual('Unable to Process Input');
@@ -72,7 +72,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'invalid.path', 'home.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('src/tests/imgsSpec/fullSpec/test2.jpg', 200, 200, 'invalid.path', 'test2.jpg')];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual('No output directory found');
@@ -84,7 +84,7 @@ describe('Functionality Testing for Sharp Middleware', function () {
         var result;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, imageProcess_1.default('src/imgs/full/toronto.jpg', 200, 200, 'src/imgs/thumbs/', 'toronto.jpg')];
+                case 0: return [4 /*yield*/, imageProcess_1.default('src/tests/imgsSpec/fullSpec/test1.jpg', 200, 200, 'src/tests/imgsSpec/thumbsSpec/', 'test1.jpg')];
                 case 1:
                     result = _a.sent();
                     expect(result).toEqual('File already exists');

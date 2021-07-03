@@ -62,7 +62,7 @@ describe('Endpoint Testing for root path', function () {
         var response;
         return __generator(this, function (_a) {
             switch (_a.label) {
-                case 0: return [4 /*yield*/, request.get('/convert/?filename=toronto')];
+                case 0: return [4 /*yield*/, request.get('/convert/?filename=endpointSpec')];
                 case 1:
                     response = _a.sent();
                     expect(response.status).toBe(200);

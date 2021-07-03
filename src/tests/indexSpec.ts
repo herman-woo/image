@@ -12,7 +12,7 @@ describe('Endpoint Testing for root path', () => {
     done();
   });
   it('gets the conversion endpoint', async (done) => {
-    const response = await request.get('/convert/?filename=toronto');
+    const response = await request.get('/convert/?filename=endpointSpec');
     expect(response.status).toBe(200);
     done();
   });
