@@ -12,6 +12,15 @@ describe('Functionality Testing for Sharp Middleware', () => {
       200,
       'src/imgs/thumbs/toronto.jpg'
     );
-    expect(result).toEqual();
+    expect(result).toEqual("Image Processed");
+  });
+  it('Invalid Input Path throws error', async () => {
+    const result = await imageProcess(
+      'invalid.path',
+      200,
+      200,
+      'src/imgs/thumbs/toronto.jpg'
+    );
+    expect(result).toEqual("Unable to Process Image");
   });
 });

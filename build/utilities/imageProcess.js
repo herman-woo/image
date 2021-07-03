@@ -51,11 +51,11 @@ var imageProcess = function (input, w, h, output) { return __awaiter(void 0, voi
                         .toFile(output)];
             case 1:
                 _a.sent(); //places it to the designated path
-                return [3 /*break*/, 3];
+                return [2 /*return*/, "Image Processed"];
             case 2:
                 error_1 = _a.sent();
-                console.log('Sharp Could not process image');
-                return [3 /*break*/, 3];
+                console.log('Sharp Could not process image', error_1);
+                return [2 /*return*/, "Unable to Process Image"];
             case 3: return [2 /*return*/];
         }
     });
