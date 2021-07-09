@@ -8,9 +8,10 @@
     "lint": "eslint . --ext .ts",
     "format": "npm run prettier && npm run lint",
     "jasmine": "jasmine",
-    "build": "npx tsc",
-    "test": "npm run build && npm run jasmine",
+    "ts-build": "npx tsc",
+    "test": "npm run ts-build && npm run jasmine",
     "dev-start": "nodemon src/index.ts",
+    "build": "npx tsc && node build/index.js",
     "start": "npm run format && npm run test && node build/index.js"
   },
   "keywords": [
