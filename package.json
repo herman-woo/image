@@ -11,8 +11,9 @@
     "ts-build": "npx tsc",
     "test": "npm run ts-build && npm run jasmine",
     "dev-start": "nodemon src/index.ts",
-    "build": "npx tsc && node build/index.js",
-    "start": "npm run format && npm run test && node build/index.js"
+    "build": "npx tsc",
+    "deploy": "npm run format && npm run test && node build/index.js",
+    "start": "node build/index.js"
   },
   "keywords": [
     "example",
@@ -54,6 +55,6 @@
     "sharp": "^0.28.3"
   },
   "engines": {
-    "node": "14.x"
+    "node": "14.15.3"
   }
 }
