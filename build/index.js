@@ -9,7 +9,7 @@ var express_1 = __importDefault(require("express"));
 var index_1 = __importDefault(require("./routes/root/index"));
 //Server Specs
 var app = express_1.default(); //Create express server object
-var port = 3000;
+var port = process.env.PORT || 8000;
 app.use(express_1.default.static('src'));
 //Routes
 app.use('/', index_1.default); //Root Route

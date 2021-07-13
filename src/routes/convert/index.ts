@@ -42,14 +42,14 @@ convert.get(
       const cache = thumbs.find((thumb) => thumb === newFile);
       if (cache) {
         console.log('Existing File found:', cache, '. Serving cached photo');
-        result += `<h3>cached - ${width}x${height}</h3><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
+        result += `<h3>cached - ${width}x${height}</h3><img src="/imgs/thumbs/${newFile}"></img>`;
         res.send(result);
       } else {
         console.log('No thumb found, converting new photo');
         try {
           await imageProcess(input, width, height, outputDir, newFile);
-          console.log(`...done: @http://localhost:3000/imgs/thumbs/${newFile}`);
-          result += `<h3>converted - ${width}x${height}</h3><img src="http://localhost:3000/imgs/thumbs/${newFile}"></img>`;
+          console.log(`...done: @/imgs/thumbs/${newFile}`);
+          result += `<h3>converted - ${width}x${height}</h3><img src="/imgs/thumbs/${newFile}"></img>`;
           res.send(result);
         } catch (error) {
           console.log('Invalid argument', error);

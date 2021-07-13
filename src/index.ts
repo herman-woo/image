@@ -6,7 +6,7 @@ import root from './routes/root/index';
 
 //Server Specs
 const app = express(); //Create express server object
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 8000;
 app.use(express.static('src'));
 
 //Routes

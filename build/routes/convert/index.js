@@ -82,7 +82,7 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
                 cache = thumbs.find(function (thumb) { return thumb === newFile; });
                 if (!cache) return [3 /*break*/, 3];
                 console.log('Existing File found:', cache, '. Serving cached photo');
-                result += "<h3>cached - " + width + "x" + height + "</h3><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
+                result += "<h3>cached - " + width + "x" + height + "</h3><img src=\"/imgs/thumbs/" + newFile + "\"></img>";
                 res.send(result);
                 return [3 /*break*/, 7];
             case 3:
@@ -93,8 +93,8 @@ convert.get('/', search_1.default, function (req, res) { return __awaiter(void 0
                 return [4 /*yield*/, imageProcess_1.default(input, width, height, outputDir, newFile)];
             case 5:
                 _a.sent();
-                console.log("...done: @http://localhost:3000/imgs/thumbs/" + newFile);
-                result += "<h3>converted - " + width + "x" + height + "</h3><img src=\"http://localhost:3000/imgs/thumbs/" + newFile + "\"></img>";
+                console.log("...done: @/imgs/thumbs/" + newFile);
+                result += "<h3>converted - " + width + "x" + height + "</h3><img src=\"/imgs/thumbs/" + newFile + "\"></img>";
                 res.send(result);
                 return [3 /*break*/, 7];
             case 6:

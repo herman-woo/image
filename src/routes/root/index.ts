@@ -11,15 +11,15 @@ root.get('/', (req: express.Request, res: express.Response): void => {
   res.send(`<h1>Image Processing API</h1>
     <h2>Available Files:</h2>
     <ol>
-      <li><a href="http://localhost:3000/imgs/full/egypt.jpeg">egypt.jpeg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/encenadaport.jpg">encenadaport.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/fjord.jpg">fjord.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/home.jpg">home.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/icelandwaterfall.jpg">icelandwaterfall.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/palmtunnel.jpg">palmtunnel.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/ps3.jpg">ps3.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/santamonica.jpg">santamonica.jpg</a></li>
-      <li><a href="http://localhost:3000/imgs/full/toronto.jpg">toronto.jpg</a></li>
+      <li><a href="/imgs/full/egypt.jpeg">egypt.jpeg</a></li>
+      <li><a href="/imgs/full/encenadaport.jpg">encenadaport.jpg</a></li>
+      <li><a href="/imgs/full/fjord.jpg">fjord.jpg</a></li>
+      <li><a href="/imgs/full/home.jpg">home.jpg</a></li>
+      <li><a href="/imgs/full/icelandwaterfall.jpg">icelandwaterfall.jpg</a></li>
+      <li><a href="/imgs/full/palmtunnel.jpg">palmtunnel.jpg</a></li>
+      <li><a href="/imgs/full/ps3.jpg">ps3.jpg</a></li>
+      <li><a href="/imgs/full/santamonica.jpg">santamonica.jpg</a></li>
+      <li><a href="/imgs/full/toronto.jpg">toronto.jpg</a></li>
     </ol>
     <h2>Keys:</h2>
     <ul>
